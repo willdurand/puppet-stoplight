@@ -30,17 +30,17 @@ class stoplight(
 
   rvm_gem {
     "bundler-${ruby_version}":
+      ensure        => present,
       name          => 'bundler',
       ruby_version  => $ruby_version,
-      ensure        => present,
       require       => Rvm_system_ruby[$ruby_version];
   }
 
   rvm_gem {
     "rack-${ruby_version}":
+      ensure        => present,
       name          => 'rack',
       ruby_version  => $ruby_version,
-      ensure        => present,
       require       => Rvm_system_ruby[$ruby_version];
   }
 
