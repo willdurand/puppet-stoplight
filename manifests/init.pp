@@ -59,10 +59,10 @@ class stoplight(
     ],
   }
 
-  concat { "/home/${user}/stoplight/config/servers.yml":
+  concat { 'stoplight-config-servers':
+    path    => "/home/${user}/stoplight/config/servers.yml",
     owner   => $user,
     group   => $user,
-    alias   => 'stoplight-config-servers',
     require => Exec['stoplight-install-git'],
   }
 
