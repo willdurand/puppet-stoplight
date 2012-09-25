@@ -1,6 +1,9 @@
 puppet-stoplight
 ================
 
+[![Build
+Status](https://secure.travis-ci.org/willdurand/puppet-stoplight.png)](http://travis-ci.org/willdurand/puppet-stoplight)
+
 This module manages [Stoplight](https://github.com/customink/stoplight), a
 powerful build monitoring tool.
 
