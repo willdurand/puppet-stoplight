@@ -1,0 +1,6 @@
+fixtures:
+  repositories:
+    rvm: git://github.com/blt04/puppet-rvm.git
+    concat: git://github.com/ripienaar/puppet-concat.git
+  symlinks:
+    stoplight: "#{source_dir}"
