@@ -21,7 +21,7 @@ describe 'stoplight', :type => :class do
       .with_command('rvm --with-rubies 1.9.3-p194 do rackup ./config.ru &') \
       .with_user('stoplight')
     }
-    it { should contain_concat('stoplight-config-servers') }
+    it { should contain_concat('stoplight-servers') }
   end
 
   describe 'Test standard installation with given ruby_version' do
@@ -41,7 +41,7 @@ describe 'stoplight', :type => :class do
       .with_command('rvm --with-rubies 1.9.3 do rackup ./config.ru &') \
       .with_user('stoplight')
     }
-    it { should contain_concat('stoplight-config-servers') }
+    it { should contain_concat('stoplight-servers') }
   end
 
   describe 'Test standard installation with given user' do
@@ -61,6 +61,6 @@ describe 'stoplight', :type => :class do
       .with_command('rvm --with-rubies 1.9.3-p194 do rackup ./config.ru &') \
       .with_user('foo')
     }
-    it { should contain_concat('stoplight-config-servers') }
+    it { should contain_concat('stoplight-servers') }
   end
 end

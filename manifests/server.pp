@@ -1,4 +1,4 @@
-# = Define: stoplight::project
+# = Define: stoplight::server
 #
 # == Parameters:
 #
@@ -19,12 +19,12 @@
 #
 # == Example:
 #
-#   stoplight::project { 'project-name':
+#   stoplight::server { 'server-name':
 #     provider => 'jenkins',
 #     url      => 'http://example.com:8080/',
 #   }
 #
-define stoplight::project(
+define stoplight::server(
   $provider,
   $url              = $name,
   $projects         = false,
@@ -33,8 +33,8 @@ define stoplight::project(
 
   include stoplight
 
-  concat::fragment { "stoplight-project-${name}":
-    target  => 'stoplight-config-servers',
+  concat::fragment { "stoplight-server-${name}":
+    target  => 'stoplight-servers',
     content => template('stoplight/servers.yml.erb'),
   }
 }

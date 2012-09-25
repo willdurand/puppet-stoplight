@@ -41,18 +41,18 @@ Now you can install **Stoplight** using this Ruby version:
     }
 
 
-USAGE - Managing projects
+USAGE - Managing servers
 -------------------------
 
-Configuring a new project into **Stoplight** is really easy, just add the
+Configuring a new server into **Stoplight** is really easy, just add the
 following lines to your configuration:
 
-    stoplight::project { 'propel':
+    stoplight::server { 'propel':
       provider => 'jenkins',
       url      => 'http://ci.propelorm.org',
     }
 
-    stoplight::project { 'http://127.0.0.1:8080':
+    stoplight::server { 'http://127.0.0.1:8080':
       provider         => 'jenkins',
       ignored_projects => [ '/-deploy$/', '/-package$/' ],
     }

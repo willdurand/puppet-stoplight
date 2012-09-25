@@ -59,7 +59,7 @@ class stoplight(
     ],
   }
 
-  concat { 'stoplight-config-servers':
+  concat { 'stoplight-servers':
     path    => "/home/${user}/stoplight/config/servers.yml",
     owner   => $user,
     group   => $user,
@@ -86,7 +86,7 @@ class stoplight(
     unless  => 'curl http://127.0.0.1:9292',
     require => [
       Exec['stoplight-install-bundler'],
-      Concat['stoplight-config-servers'],
+      Concat['stoplight-servers'],
       Rvm_gem["rack-${ruby_version}"]
     ],
   }
