@@ -15,6 +15,6 @@ describe 'stoplight', :type => :class do
     it { should contain_exec('stoplight-install-git') }
     it { should contain_exec('stoplight-install-bundler').with_command('rvm --with-rubies 1.9.3-p194 do bundle install') }
     it { should contain_exec('stoplight-run').with_command('rvm --with-rubies 1.9.3-p194 do rackup ./config.ru &') }
-    it { should contain_concat('/home/stoplight/stoplight/config/servers.yml') }
+    it { should contain_concat('stoplight-config-servers') }
   end
 end
