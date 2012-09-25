@@ -9,9 +9,6 @@
 #   The user who runs the application.
 #   Default: stoplight
 #
-# [*create_user*]
-#   Whether to create the user.
-#
 # == Example:
 #
 #   class { 'stoplight':
@@ -19,12 +16,11 @@
 #   }
 #
 class stoplight(
-  $ruby_version,
-  $user           = $stoplight::params::user,
-  $create_user    = true,
+  $ruby_version = $stoplight::params::ruby_version,
+  $user         = $stoplight::params::user
 ) inherits stoplight::params {
 
-  if $create_user {
+  if ! defined(User[$user]) {
     user { $user:
       ensure     => present,
       managehome => true,

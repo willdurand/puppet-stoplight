@@ -31,6 +31,8 @@ define stoplight::project(
   $ignored_projects = false
 ) {
 
+  include stoplight
+
   concat::fragment { "stoplight-project-${name}":
     target  => 'stoplight-config-servers',
     content => template('stoplight/servers.yml.erb'),
