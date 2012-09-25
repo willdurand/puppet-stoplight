@@ -3,14 +3,14 @@
   url: <%= url %>
 <% if @projects -%>
   projects:
-  <% projects.each do |project| -%>
-    - <%= project %>
-  <% end -%>
+  <%- projects.each do |project| -%>
+    - <%= project.chomp %>
+  <%- end -%>
 <% end -%>
-
 <% if @ignored_projects -%>
   ignored_projects:
-  <% ignored_projects.each do |project| -%>
-    - <%= project %>
-  <% end -%>
-<% end %>
+  <%- ignored_projects.each do |project| -%>
+    - <%= project.chomp %>
+  <%- end -%>
+<% end -%>
+

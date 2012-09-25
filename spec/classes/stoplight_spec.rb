@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'stoplight' do
+describe 'stoplight', :type => :class do
   let(:title) { 'stoplight' }
   let(:facts) { {
     :concat_basedir => '/var/lib/puppet/concat',

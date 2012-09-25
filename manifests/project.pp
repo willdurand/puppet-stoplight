@@ -27,8 +27,8 @@
 define stoplight::project(
   $provider,
   $url              = $name,
-  $projects         = [],
-  $ignored_projects = []
+  $projects         = false,
+  $ignored_projects = false
 ) {
 
   concat::fragment { "stoplight-project-${name}":
