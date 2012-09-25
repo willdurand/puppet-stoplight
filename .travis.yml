@@ -9,7 +9,6 @@ env:
   - PUPPET_VERSION=2.7.9
 
 script:
-  - "rake lint"
   - "rake spec"
 
 gemfile: .gemfile
