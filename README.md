@@ -30,7 +30,7 @@ First of all, you need a working Ruby environment:
     }
 
     rvm_system_ruby { '1.9.3-p194':
-      ensure      => 'present',
+      ensure      => present,
       default_use => false,
     }
 
