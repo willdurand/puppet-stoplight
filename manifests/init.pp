@@ -5,6 +5,13 @@
 # [*ruby_version*]
 #   The ruby version to use.
 #
+# [*user*]
+#   The user who runs the application.
+#   Default: stoplight
+#
+# [*create_user*]
+#   Whether to create the user.
+#
 # == Example:
 #
 #   class { 'stoplight':
@@ -12,20 +19,20 @@
 #   }
 #
 class stoplight(
-  $ruby_version
-) {
+  $ruby_version,
+  $user           = $stoplight::params::user,
+  $create_user    = true,
+) inherits stoplight::params {
 
-  package { ['make', 'g++']:
-    ensure   => latest,
-  }
+  if $create_user {
+    user { $user:
+      ensure     => present,
+      managehome => true,
+    }
 
-  user { 'stoplight':
-    ensure     => present,
-    managehome => true,
-  }
-
-  rvm::system_user {
-    'stoplight': ;
+    rvm::system_user {
+      $user: ;
+    }
   }
 
   rvm_gem {
@@ -47,18 +54,18 @@ class stoplight(
   exec { 'stoplight-install-git':
     command => 'git clone git://github.com/customink/stoplight.git',
     path    => '/usr/bin:/bin:/usr/sbin:/sbin',
-    cwd     => '/home/stoplight',
-    user    => 'stoplight',
-    unless  => 'test -d /home/stoplight/stoplight',
+    cwd     => "/home/${user}",
+    user    => $user,
+    unless  => "test -d /home/${user}/stoplight",
     require => [
-      Package['git-core'],
+      Package['git'],
       User['stoplight']
     ],
   }
 
-  concat { '/home/stoplight/stoplight/config/servers.yml':
-    owner   => 'stoplight',
-    group   => 'stoplight',
+  concat { "/home/${user}/stoplight/config/servers.yml":
+    owner   => $user,
+    group   => $user,
     alias   => 'stoplight-config-servers',
     require => Exec['stoplight-install-git'],
   }
@@ -66,12 +73,11 @@ class stoplight(
   exec { 'stoplight-install-bundler':
     command => "rvm --with-rubies ${ruby_version} do bundle install",
     path    => '/usr/local/rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin',
-    cwd     => '/home/stoplight/stoplight',
-    user    => 'stoplight',
-    unless  => 'test -f /home/stoplight/stoplight/config/servers.yml',
+    cwd     => "/home/${user}/stoplight",
+    user    => $user,
+    unless  => "test -f /home/${user}/stoplight/config/servers.yml",
     require => [
       Exec['stoplight-install-git'],
-      Package['make', 'g++'],
       Rvm_gem["bundler-${ruby_version}"]
     ],
   }
@@ -79,8 +85,8 @@ class stoplight(
   exec { 'stoplight-run':
     command => "rvm --with-rubies ${ruby_version} do rackup ./config.ru &",
     path    => '/usr/local/rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin',
-    cwd     => '/home/stoplight/stoplight',
-    user    => 'stoplight',
+    cwd     => "/home/${user}/stoplight",
+    user    => $user,
     unless  => 'curl http://127.0.0.1:9292',
     require => [
       Exec['stoplight-install-bundler'],

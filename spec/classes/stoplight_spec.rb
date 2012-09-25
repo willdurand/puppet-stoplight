@@ -9,8 +9,6 @@ describe 'stoplight', :type => :class do
   describe 'Test another standard installation' do
     let(:params) { {:ruby_version => '1.9.3-p194' } }
 
-    it { should contain_package('make').with_ensure('latest') }
-    it { should contain_package('g++').with_ensure('latest') }
     it { should contain_user('stoplight') }
     it { should contain_rvm_gem('bundler-1.9.3-p194') }
     it { should contain_rvm_gem('rack-1.9.3-p194') }

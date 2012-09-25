@@ -32,7 +32,7 @@ define stoplight::project(
 ) {
 
   concat::fragment { "stoplight-project-${name}":
-    target  => '/home/stoplight/stoplight/config/servers.yml',
+    target  => 'stoplight-config-servers',
     content => template('stoplight/servers.yml.erb'),
   }
 }
