@@ -4,6 +4,7 @@ describe 'stoplight' do
   let(:title) { 'stoplight' }
 
   describe 'Test standard installation' do
-    it { should contain_file('servers.yml').with_ensure('present') }
+    let(:params) { {:ruby_version => '1.9.3' } }
+    it { should contain_package('make').with_ensure('present') }
   end
 end
