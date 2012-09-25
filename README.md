@@ -34,6 +34,8 @@ First of all, you need a working Ruby environment:
       default_use => false,
     }
 
+You also need `git`, `g++` and `make`.
+
 Now you can install **Stoplight** using this Ruby version:
 
     class { 'stoplight':
