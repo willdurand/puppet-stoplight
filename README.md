@@ -62,6 +62,18 @@ following lines to your configuration:
 Availables parameters are: `provider`, `url`, `projects` and `ignored_projects`.
 
 
+Running the tests
+-----------------
+
+Install the dependencies using [Bundler](http://gembundler.com):
+
+    BUNDLE_GEMFILE=.gemfile bundle install
+
+Run the following command:
+
+    BUNDLE_GEMFILE=.gemfile bundle exec rake spec
+
+
 License
 -------
 
