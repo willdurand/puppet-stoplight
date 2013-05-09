@@ -6,4 +6,4 @@ license     'MIT'
 author      'William Durand'
 
 dependency  'ripienaar/concat', '0.2.x'
-dependency  'blt04/rvm'
+dependency  'maestrodev/rvm'
